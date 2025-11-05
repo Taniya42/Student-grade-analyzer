@@ -1,0 +1,52 @@
+print("=========== STUDENT GRADE ANALYZER ===========")
+
+name = input("Enter Student Name: ")
+roll = input("Enter Roll Number: ")
+subjects = int(input("Enter number of subjects: "))
+
+subject_names = []
+marks = []
+
+for i in range(subjects):
+    sname = input(f"Enter subject {i+1} name: ")
+    subject_names.append(sname)
+    score = float(input(f"Enter marks in {sname}: "))
+    marks.append(score)
+
+total = sum(marks)
+percentage = (total / (subjects * 100)) * 100
+
+if percentage >= 90:
+    grade = "A+"
+elif percentage >= 80:
+    grade = "A"
+elif percentage >= 70:
+    grade = "B+"
+elif percentage >= 60:
+    grade = "B"
+elif percentage >= 50:
+    grade = "C"
+else:
+    grade = "F"
+
+cgpa = (percentage / 100) * 10
+
+highest = max(marks)
+lowest = min(marks)
+
+print("\n============== RESULT SUMMARY ==============")
+print("Name:", name)
+print("Roll Number:", roll)
+print("Total Marks:", total)
+print("Percentage:", round(percentage, 2), "%")
+print("Grade:", grade)
+print("CGPA (10-Point Scale):", round(cgpa, 2))
+print("Highest Score:", highest, "-", subject_names[marks.index(highest)])
+print("Lowest Score:", lowest, "-", subject_names[marks.index(lowest)])
+
+print("\n----------- SUBJECT WISE REPORT -----------")
+for i in range(subjects):
+    status = "Pass" if marks[i] >= 33 else "Fail"
+    print(f"{subject_names[i]} : {marks[i]} ({status})")
+
+print("\nFinal Result:", "PASS" if percentage >= 33 else "FAIL")
